@@ -1,2 +1,2 @@
-drop keyspace datastax_sequence_demo;
+drop keyspace datastax_unique_versions_demo;
 	
