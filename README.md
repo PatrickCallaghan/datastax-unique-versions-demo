@@ -1,11 +1,11 @@
-Sequencing Demo
+# datastax-unique-versions-demo
 ====================
 
 ## Scenario
 
 This demo shows how to create distributed sequences or version nos for use in system that needs a unique ids.
 
-NOTE : this is only a demo and the throughput of this will not be increased with the amount of servers that are added. In distributed systems it is generally more appropriate to use UUIDs for uniqueness rather than a sequence. If you have multiple data centers, expect the throughput to also decrease.  
+Based on the number of distinct ids, this sequence generation should scale to any amount of throughput. 
 
 ## Schema Setup
 Note : This will drop the keyspace "datastax unique_versions_demo" and create a new one. All existing data will be lost. 
@@ -27,4 +27,4 @@ To remove the tables and the schema, run the following.
     
     
     
-# datastax-unique-versions-demo
+
