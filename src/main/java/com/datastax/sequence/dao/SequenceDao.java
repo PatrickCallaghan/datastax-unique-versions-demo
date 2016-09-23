@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
+import com.datastax.driver.core.ResultSetFuture;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.exceptions.WriteTimeoutException;
@@ -35,8 +36,8 @@ public class SequenceDao {
 	}
 
 	public int read(String id) {
-		ResultSet resultSet = session.execute(read.bind(id));
-		Row row = resultSet.one();
+		ResultSetFuture resultSet = session.executeAsync(read.bind(id));
+		Row row = resultSet.getUninterruptibly().one();
 		if (row == null) {
 			session.execute("insert into " + seqtable + " (id, sequence) values ('" + id + "', 0)");
 			return 0;
@@ -48,9 +49,9 @@ public class SequenceDao {
 	public boolean update(String id, int newSequence, int oldSequence) {
 		
 		try {
-			ResultSet resultSet = this.session.execute(update.bind(newSequence, id, oldSequence));
+			ResultSetFuture resultSet = this.session.executeAsync(update.bind(newSequence, id, oldSequence));
 			if (resultSet != null) {
-				Row row = resultSet.one();
+				Row row = resultSet.getUninterruptibly().one();
 				return row.getBool(0);
 			}
 		} catch (WriteTimeoutException e) {

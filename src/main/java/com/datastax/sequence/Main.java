@@ -55,19 +55,14 @@ public class Main {
 		@Override
 		public void run() {
 			for  (int i = 0; i < NO_OF_SEQUENCES/noOfThreads; i ++) {
-				
-				String issuer = issuers.get(new Double(Math.random() * issuers.size()).intValue());				
+					
+				String issuer = "" + (new Double(Math.random() * 1000000).intValue());				
 				service.getNextSequenceNo(issuer);
 				//logger.info(service.getNextSequenceNo(issuer) + "");
 			}
 		}		
 	}
-	
-	private List<String> issuers = Arrays.asList("Tesco", "Sainsbury", "Asda Wal-Mart Stores", "Morrisons",
-			"Marks & Spencer", "Boots", "John Lewis", "Waitrose", "Argos", "Co-op", "Currys", "PC World", "B&Q",
-			"Somerfield", "Next", "Spar", "Amazon", "Costa", "Starbucks", "BestBuy", "Wickes", "TFL", "National Rail",
-			"Pizza Hut", "Local Pub");
-	
+		
 	/**
 	 * @param args
 	 */
