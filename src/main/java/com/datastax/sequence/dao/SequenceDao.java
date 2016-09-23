@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.ConsistencyLevel;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.ResultSetFuture;
@@ -33,6 +34,7 @@ public class SequenceDao {
 
 		this.update = session.prepare(UPDATE_SEQUENCE);
 		this.read = session.prepare(READ_FROM_SEQUENCE);
+		this.read.setConsistencyLevel(ConsistencyLevel.LOCAL_SERIAL);
 	}
 
 	public int read(String id) {
