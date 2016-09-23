@@ -58,6 +58,8 @@ public class SequenceDao {
 			logger.warn(e.getMessage());
 			return false;
 		}
+		
+		
 		return true;
 	}
 }
