@@ -57,8 +57,8 @@ public class Main {
 			for  (int i = 0; i < NO_OF_SEQUENCES/noOfThreads; i ++) {
 				
 				String issuer = issuers.get(new Double(Math.random() * issuers.size()).intValue());				
-				//service.getNextSequenceNo(issuer);
-				logger.info(service.getNextSequenceNo(issuer) + "");
+				service.getNextSequenceNo(issuer);
+				//logger.info(service.getNextSequenceNo(issuer) + "");
 			}
 		}		
 	}
