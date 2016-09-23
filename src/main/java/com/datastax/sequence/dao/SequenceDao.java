@@ -1,6 +1,7 @@
 package com.datastax.sequence.dao;
 
 import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.ConsistencyLevel;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
@@ -29,6 +30,7 @@ public class SequenceDao {
 		this.session = cluster.connect();
 
 		this.update = session.prepare(UPDATE_SEQUENCE);
+		this.update.setConsistencyLevel(ConsistencyLevel.LOCAL_SERIAL);
 		this.read = session.prepare(READ_FROM_SEQUENCE);		
 	}
 
