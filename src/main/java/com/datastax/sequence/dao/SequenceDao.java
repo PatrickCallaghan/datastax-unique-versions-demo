@@ -46,9 +46,9 @@ public class SequenceDao {
 	}
 
 	public boolean update(String id, int newSequence, int oldSequence) {
-		ResultSet resultSet = this.session.execute(update.bind(newSequence, id, oldSequence));
-
+		
 		try {
+			ResultSet resultSet = this.session.execute(update.bind(newSequence, id, oldSequence));
 			if (resultSet != null) {
 				Row row = resultSet.one();
 				return row.getBool(0);
